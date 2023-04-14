@@ -1,9 +1,9 @@
 package test.Api.pokemon.pokemonApi.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
+
 
 @Entity
 public class Veterinaire {
@@ -11,15 +11,19 @@ public class Veterinaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nom;
+
+    @OneToMany(mappedBy = "veterinaire")
+    private List<Pokemon> pokemon;
 
     public Veterinaire() {
     }
 
     public Veterinaire(String nom) {
         this.nom = nom;
-    }
+         }
+
+         //getters and setters
 
     public Long getId() {
         return id;
@@ -35,5 +39,13 @@ public class Veterinaire {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public List<Pokemon> getPokemon() {
+        return pokemon;
+    }
+
+    public void setPokemon(List<Pokemon> pokemon) {
+        this.pokemon = pokemon;
     }
 }

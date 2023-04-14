@@ -56,4 +56,9 @@ public Pokemon modifPokemon(@PathVariable String name, @RequestBody Pokemon poke
      pokemonRepository.deleteById(id);
 }
 
+
+@DeleteMapping("/deletePokemon/{name}")
+    public void  supprimerPokemonNom(@PathVariable String firstName){
+        pokemonRepository.deleteByFirstName(firstName);
+}
 }

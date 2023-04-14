@@ -4,16 +4,28 @@ import jakarta.persistence.*;
 
 @Entity
 public class Pokemon {
-
-    @ManyToOne
-    @JoinColumn(name = "veterinaire_id")
-    private Veterinaire veterinaire;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
     private String firstName;
      private String type;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "veterinaire_id")
+    private Veterinaire veterinaire;
+
+    public Pokemon() {
+    }
+
+    public Pokemon(String firstName, String type, Veterinaire veterinaire) {
+        this.firstName = firstName;
+        this.type = type;
+        this.veterinaire = veterinaire;
+    }
+
+//getters and setters
+
 
     public Long getId() {
         return id;
@@ -39,17 +51,11 @@ public class Pokemon {
         this.type = type;
     }
 
-    //toujours un constructor vide pour hebernate et c'est lui qui va créer ma table.
-    public Pokemon() {
+    public Veterinaire getVeterinaire() {
+        return veterinaire;
     }
 
-    public Pokemon(String firstName, String type) {
-        this.firstName = firstName;
-          this.type = type;
+    public void setVeterinaire(Veterinaire veterinaire) {
+        this.veterinaire = veterinaire;
     }
-
-    //getters and setters
-
-
-
 }
