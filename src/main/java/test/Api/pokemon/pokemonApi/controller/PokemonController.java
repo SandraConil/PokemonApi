@@ -1,8 +1,6 @@
 package test.Api.pokemon.pokemonApi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import test.Api.pokemon.pokemonApi.entity.Pokemon;
 import test.Api.pokemon.pokemonApi.repository.PokemonRepository;
@@ -50,21 +48,12 @@ public Pokemon modifPokemon(@PathVariable String name, @RequestBody Pokemon poke
     pokemonRepository.save(modifier);
     return modifier;
 
-
+}
 
 //pour supprimer DELETE
-    @DeleteMapping("/pokemon/{id}")
-    public void deletePokemon(@PathVariable Long id){
+   @DeleteMapping("/pokemon/{name}")
+    public void deletePokemon(@PathVariable Long id{
      pokemonRepository.deleteById(id);
 }
 
 }
-
-//correction yvens
-  /*
-   @DeleteMapping("/pokemons/{id}/profil")
-    public boolean deletePokemon(@PathVariable Long id) {
-        pokemonRepository.deleteById(id);
-        return true;
-    }
-    */
