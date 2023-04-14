@@ -37,23 +37,34 @@ public class PokemonController {
     //pour recuperer un pokemon GET
  @GetMapping("/recupPokemon/{firstName}")
  public Pokemon recupPokemon(@PathVariable String firstName){
-       return pokemonRepository.findByFirstName(firstName);
+
+        return pokemonRepository.findByFirstName(firstName);
     }
 
 
 // UPDATE PUT qui permet de modifier le nom du pokemon
-    @PutMapping("/modif/{firstName}")
-    public  Pokemon modifPokemon(@PathVariable String firstName, @RequestBody Pokemon pokemon){
-     Pokemon modifier = pokemonRepository.findByFirstName(firstName);
-     modifier.setFirstName(pokemon.getFirstName());
-     pokemonRepository.save(pokemon);
-        return modifier;
-    }
+@PutMapping("/modifPokemon/{name}")
+public Pokemon modifPokemon(@PathVariable String name, @RequestBody Pokemon pokemon) {
+    Pokemon modifier = pokemonRepository.findByFirstName(name);
+    modifier.setFirstName(pokemon.getFirstName());
+    pokemonRepository.save(modifier);
+    return modifier;
+
 
 
 //pour supprimer DELETE
     @DeleteMapping("/pokemon/{id}")
-    public void deletePokemon(@PathVariable Long id) {
+    public void deletePokemon(@PathVariable Long id){
      pokemonRepository.deleteById(id);
 }
+
 }
+
+//correction yvens
+  /*
+   @DeleteMapping("/pokemons/{id}/profil")
+    public boolean deletePokemon(@PathVariable Long id) {
+        pokemonRepository.deleteById(id);
+        return true;
+    }
+    */
